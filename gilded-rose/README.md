@@ -50,12 +50,12 @@ gilded-rose/
 |   `-- snapshots/
 |       `-- expected_inventory_report_2_days.txt
 `-- docs/
-    |-- diagnostico_tecnico.md
-    |-- requisitos.md
-    |-- plano_contingencia.md
-    |-- evidencias_testes.md
+    |-- diagnostico_tecnico.pdf
+    |-- requisitos.pdf
+    |-- plano_contingencia.pdf
+    |-- evidencias_testes.pdf
     `-- apresentacao/
-        `-- roteiro_apresentacao.md
+        `-- roteiro_apresentacao.pdf
 ```
 
 ## Arquitetura em camadas
@@ -169,17 +169,17 @@ Isso ajuda a detectar regressão de comportamento no sistema como um todo, e nã
 
 ## Documentação de apoio
 
-- `docs/diagnostico_tecnico.md`
+- `docs/diagnostico_tecnico.pdf`
   Apresenta os problemas encontrados no legado original.
 
-- `docs/requisitos.md`
+- `docs/requisitos.pdf`
   Organiza os requisitos funcionais e não funcionais.
 
-- `docs/plano_contingencia.md`
+- `docs/plano_contingencia.pdf`
   Registra os riscos e a estratégia de refatoração segura.
 
-- `docs/evidencias_testes.md`
+- `docs/evidencias_testes.pdf`
   Resume os comandos executados e os resultados obtidos.
 
-- `docs/apresentacao/roteiro_apresentacao.md`
+- `docs/apresentacao/roteiro_apresentacao.pdf`
   Traz um roteiro curto para defesa do trabalho.
