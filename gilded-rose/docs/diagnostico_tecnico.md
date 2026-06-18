@@ -1,69 +1,69 @@
-# Diagnostico Tecnico do Legado
+# Diagnóstico Técnico do Legado
 
 ## Contexto
 
-O codigo original analisado foi a variante Python do repositório `emilybache/GildedRose-Refactoring-Kata`, especialmente o arquivo `python/gilded_rose.py`.
+O código original analisado foi a variante Python do repositório `emilybache/GildedRose-Refactoring-Kata`, especialmente o arquivo `python/gilded_rose.py`.
 
 ## Principais problemas encontrados
 
 ### 1. Excesso de condicionais aninhadas
 
-O metodo `update_quality()` do legado concentra toda a regra de negocio em uma estrutura extensa de `if/else`, como pode ser visto em `python/gilded_rose.py:8-36`.
+O método `update_quality()` do legado concentra toda a regra de negócio em uma estrutura extensa de `if/else`, como pode ser visto em `python/gilded_rose.py:8-36`.
 
 Impactos:
 
-- leitura dificil;
+- leitura difícil;
 - alto custo para localizar regras de cada item;
-- maior risco de regressao ao adicionar novo comportamento.
+- maior risco de regressão ao adicionar novo comportamento.
 
 ### 2. Responsabilidades misturadas
 
-O mesmo metodo decide o tipo do item, altera `quality`, altera `sell_in`, trata expiracao e impõe excecoes para itens lendarios.
+O mesmo método decide o tipo do item, altera `quality`, altera `sell_in`, trata expiração e impõe exceções para itens lendários.
 
 Impactos:
 
-- baixa coesao;
-- pouca reutilizacao;
-- manutencao mais arriscada.
+- baixa coesão;
+- pouca reutilização;
+- manutenção mais arriscada.
 
 ### 3. Forte acoplamento a strings literais
 
-As categorias dos itens sao reconhecidas diretamente por comparacoes textuais repetidas, como `Aged Brie`, `Backstage passes...` e `Sulfuras...`.
+As categorias dos itens são reconhecidas diretamente por comparações textuais repetidas, como `Aged Brie`, `Backstage passes...` e `Sulfuras...`.
 
 Impactos:
 
-- duplicacao de conhecimento;
+- duplicação de conhecimento;
 - dificuldade para adicionar novas categorias como `Conjured`;
-- maior chance de erro por digitacao.
+- maior chance de erro por digitação.
 
-### 4. Duplicaçao de regras
+### 4. Duplicação de regras
 
-A degradacao de qualidade aparece em mais de um ponto do metodo, inclusive em blocos diferentes para antes e depois do vencimento.
+A degradação de qualidade aparece em mais de um ponto do método, inclusive em blocos diferentes para antes e depois do vencimento.
 
 Impactos:
 
 - comportamento espalhado;
-- dificuldade de evolucao;
-- necessidade de validar varios trechos para uma mudanca simples.
+- dificuldade de evolução;
+- necessidade de validar vários trechos para uma mudança simples.
 
 ### 5. Baixa testabilidade inicial
 
 O projeto original traz:
 
 - um teste placeholder em `python/tests/test_gilded_rose.py`;
-- um teste por approval em `python/tests/test_gilded_rose_approvals.py`, dependente de configuracao adicional.
+- um teste por approval em `python/tests/test_gilded_rose_approvals.py`, dependente de configuração adicional.
 
-Na pratica, a suite inicial nao oferece protecao suficiente para refatoracao segura.
+Na prática, a suíte inicial não oferece proteção suficiente para refatoração segura.
 
 ### 6. Nova regra ausente no legado
 
-O fixture original ja lista `Conjured Mana Cake`, mas o codigo legado trata esse item como se fosse um item comum. Isso indica um gap explicito entre requisito e implementacao.
+O fixture original já lista `Conjured Mana Cake`, mas o código legado trata esse item como se fosse um item comum. Isso indica um gap explícito entre requisito e implementação.
 
-## Conclusao do diagnostico
+## Conclusão do diagnóstico
 
-O sistema original funciona para boa parte das regras basicas, mas sua estrutura dificulta manutencao, testes e extensao. A modernizacao precisou priorizar:
+O sistema original funciona para boa parte das regras básicas, mas sua estrutura dificulta manutenção, testes e extensão. A modernização precisou priorizar:
 
 - isolamento das regras por tipo de item;
-- centralizacao de invariantes de dominio;
-- criacao de testes automatizados antes da refatoracao estrutural;
-- implementacao especifica dos itens `Conjured`.
+- centralização de invariantes de domínio;
+- criação de testes automatizados antes da refatoração estrutural;
+- implementação específica dos itens `Conjured`.

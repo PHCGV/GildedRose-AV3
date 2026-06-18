@@ -1,80 +1,83 @@
-# Plano de Contingencia e Refatoracao
+# Plano de Contingência e Refatoração
 
-## Estrategia adotada
+## Estratégia adotada
 
 1. Capturar o comportamento inicial do legado por meio do fixture textual.
-2. Escrever testes automatizados cobrindo as regras de negocio esperadas.
-3. Criar uma nova base de trabalho isolada em `gilded-rose-modernizacao/`.
-4. Manter o contrato externo do kata e mover a logica para componentes menores.
-5. Implementar `Conjured` somente apos estabilizar a malha principal de testes.
-6. Validar a solucao com `pytest`, fixture textual e cobertura de codigo.
+2. Escrever testes automatizados cobrindo as regras de negócio esperadas.
+3. Criar uma nova base de trabalho isolada para a solução final.
+4. Manter o contrato externo do kata e mover a lógica para componentes menores.
+5. Implementar `Conjured` somente após estabilizar a malha principal de testes.
+6. Validar a solução com `pytest` e fixture textual.
 
 ## Partes que podem ser alteradas
 
 - `src/gilded_rose.py`
 - `src/texttest_fixture.py`
+- `src/application/*`
 - `src/domain/*`
+- `src/interface_adapters/*`
+- `src/frameworks/*`
 - `tests/*`
 - `README.md`
 - `docs/*`
 
-## Partes que nao podem ser alteradas
+## Partes que não podem ser alteradas
 
 - a interface da classe `Item`;
 - a propriedade `items` da classe `GildedRose`;
-- o metodo publico `update_quality()` como contrato de uso.
+- o método público `update_quality()` como contrato de uso.
 
 ## Riscos identificados
 
 ### Risco 1. Quebrar comportamento legado
 
-Acao preventiva:
+Ação preventiva:
 
 - criar testes para cada tipo de item;
 - validar um snapshot textual do fluxo completo.
 
-### Risco 2. Implementar `Conjured` com degradacao incorreta
+### Risco 2. Implementar `Conjured` com degradação incorreta
 
-Acao preventiva:
+Ação preventiva:
 
-- cobrir explicitamente cenarios antes e depois do vencimento;
+- cobrir explicitamente cenários antes e depois do vencimento;
 - testar limite inferior de qualidade.
 
 ### Risco 3. Alterar estruturas proibidas pelo enunciado
 
-Acao preventiva:
+Ação preventiva:
 
-- preservar `Item` sem modificacoes;
-- manter `items` e `update_quality()` como fachada publica.
+- preservar `Item` sem modificações;
+- manter `items` e `update_quality()` como fachada pública.
 
 ### Risco 4. Introduzir arquitetura excessiva para um kata pequeno
 
-Acao preventiva:
+Ação preventiva:
 
 - usar `Clean` leve;
-- separar apenas o necessario: selecao de politica, regras comuns e politicas de atualizacao.
+- separar apenas o necessário: regras de domínio, caso de uso, adaptadores e driver textual.
 
-### Risco 5. Dependencia de ambiente Windows
+### Risco 5. Dependência de ambiente Windows
 
-Acao preventiva:
+Ação preventiva:
 
 - documentar comandos simples;
-- desabilitar cache do `pytest` via `pytest.ini` para evitar problemas de permissao observados neste ambiente.
+- evitar dependências de configuração externa para executar os testes.
 
-## Ordem segura de execucao
+## Ordem segura de execução
 
-1. Preparar dependencias.
+1. Preparar dependências.
 2. Registrar linha de base do legado.
 3. Escrever testes.
 4. Executar testes em vermelho.
-5. Implementar o minimo para verde.
-6. Refatorar internamente mantendo a suite verde.
-7. Gerar evidencias finais.
+5. Implementar o mínimo para verde.
+6. Refatorar internamente mantendo a suíte verde.
+7. Gerar evidências finais.
 
-## Criterios de validacao
+## Critérios de validação
 
 - todos os testes automatizados devem passar;
 - `Conjured` deve degradar em dobro e respeitar limites;
-- `Sulfuras` deve permanecer imutavel;
-- o fixture textual deve produzir a saida esperada;
-- a cobertura do codigo fonte deve ser suficiente para sustentar a confianca na refatoracao.
+- `Sulfuras` deve permanecer imutável;
+- o fixture textual deve produzir a saída esperada;
+- a arquitetura deve permanecer coerente com a separação em camadas adotada.

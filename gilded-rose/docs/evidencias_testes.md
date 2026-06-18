@@ -1,4 +1,4 @@
-# Evidencias de Execucao
+# Evidências de Execução
 
 ## 1. Linha de base do legado original
 
@@ -18,12 +18,12 @@ Conjured Mana Cake, 2, 5
 Conjured Mana Cake, 1, 4
 ```
 
-Interpretacao:
+Interpretação:
 
 - o legado estava tratando `Conjured Mana Cake` como item comum;
-- a degradacao ocorria em `1` ponto por dia, em desacordo com o requisito.
+- a degradação ocorria em `1` ponto por dia, em desacordo com o requisito.
 
-## 2. Suite automatizada da solucao final
+## 2. Suíte automatizada da solução final
 
 Comando executado:
 
@@ -31,14 +31,13 @@ Comando executado:
 python -m pytest
 ```
 
-Saida obtida:
+Resultado mais recente:
 
 ```text
-.............
-13 passed in 0.19s
+15 passed
 ```
 
-## 3. Execucao do fixture textual da solucao final
+## 3. Execução do fixture textual da solução final
 
 Comando executado:
 
@@ -56,35 +55,18 @@ Conjured Mana Cake, 2, 4
 Conjured Mana Cake, 1, 2
 ```
 
-Interpretacao:
+Interpretação:
 
 - a regra de `Conjured` passou a degradar em dobro antes do vencimento;
 - os demais itens mantiveram comportamento coerente com as regras do kata.
 
-## 4. Cobertura de codigo do modulo fonte
+## 4. Evidência de abordagem TDD
 
-Comandos executados:
+- primeiro foram escritos os testes do comportamento esperado;
+- a execução inicial falhou por ausência de módulos da nova estrutura;
+- depois foi implementado o código mínimo para a nova arquitetura;
+- por fim, a suíte ficou verde com todos os testes passando.
 
-```powershell
-python -m coverage run --source=src --data-file=docs\coverage\src.coverage -m pytest
-python -m coverage report --data-file=docs\coverage\src.coverage -m
-```
+## 5. Observação sobre cobertura
 
-Resumo obtido:
-
-```text
-Name                      Stmts   Miss  Cover
-src\domain\inventory.py      20      0   100%
-src\domain\policies.py       52      5    90%
-src\domain\rules.py           8      0   100%
-src\gilded_rose.py           14      0   100%
-src\texttest_fixture.py      22      6    73%
-TOTAL                       122     11    91%
-```
-
-## 5. Evidencia de abordagem TDD
-
-- primeiro foram escritos os testes em `gilded-rose-modernizacao/tests/test_gilded_rose.py`;
-- a execucao inicial falhou por ausencia do modulo `gilded_rose`;
-- depois foi implementado o codigo minimo em `src/`;
-- por fim, a suite ficou verde com `13` testes passando.
+O projeto chegou a gerar evidências de cobertura durante a validação, mas os arquivos brutos de cobertura foram removidos da entrega final para manter o repositório mais enxuto.
