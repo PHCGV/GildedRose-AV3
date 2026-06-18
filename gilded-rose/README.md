@@ -54,8 +54,6 @@ gilded-rose/
     |-- requisitos.pdf
     |-- plano_contingencia.pdf
     |-- evidencias_testes.pdf
-    `-- apresentacao/
-        `-- roteiro_apresentacao.pdf
 ```
 
 ## Arquitetura em camadas
@@ -116,13 +114,13 @@ python -m pytest
 
 ## Como executar o fixture textual
 
-Exemplo para 2 dias:
+Exemplo para X dias:
 
 ```powershell
-python src\texttest_fixture.py 2
+python src\texttest_fixture.py X
 ```
 
-Esse comando imprime o estado do inventário no dia `0`, no dia `1` e no dia `2`.
+Esse comando imprime o estado do inventário no dia `0`, no dia `1`, no dia `2` até o dia `X`.
 
 ## Resumo da solução
 
@@ -180,6 +178,3 @@ Isso ajuda a detectar regressão de comportamento no sistema como um todo, e nã
 
 - `docs/evidencias_testes.pdf`
   Resume os comandos executados e os resultados obtidos.
-
-- `docs/apresentacao/roteiro_apresentacao.pdf`
-  Traz um roteiro curto para defesa do trabalho.
